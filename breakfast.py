@@ -1,6 +1,8 @@
 from random import shuffle
 import argparse
 import os
+import sys
+import math
 
 import arrow
 import jinja2
@@ -21,7 +23,7 @@ if __name__ == '__main__':
 
     dates = [r for r in arrow.Arrow.range('day', start, end) if r.weekday() == 3]
 
-    people = args.people * len(dates)
+    people = args.people * math.floor(len(dates) / len(args.people))
     shuffle(people)
 
     zipped = zip(people, dates)
